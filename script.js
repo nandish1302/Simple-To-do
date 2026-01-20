@@ -24,7 +24,18 @@ function addTodo(e) {
     const li = document.createElement("li");
     li.innerText= inputValue;
     todolist.append(li);
-    todoInput.value = "";
+ 
+   const deletebtn = document.createElement("button");
+   deletebtn.innerText="X";
+   li.append(deletebtn);
+   deletebtn.classList.add("deletebtn");
+   deletebtn.addEventListener("click",delelteTodos);
     
 }
-
+function delelteTodos(e){
+    e.preventDefault();
+    if(e.target.classList.contains("deletebtn"));{
+        e.target.parentElement.remove();
+    }
+      
+}
