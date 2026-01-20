@@ -33,6 +33,7 @@ function addTodo(e) {
     
 }
 function delelteTodos(e){
+    // todo delete btn 
     e.preventDefault();
     if(e.target.classList.contains("deletebtn"));{
         e.target.parentElement.remove();
