@@ -59,7 +59,7 @@ form button:hover {
 }
 
 .todo-list {
-  min-width: 30%;
+  min-width: 40%;
   list-style: none;
 }
 
@@ -102,10 +102,23 @@ form button:hover {
 }
 
 .completed {
-  opacity: 0.5;
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 .completed:before {
   content: "✘";
   margin-left: 5px;
 }
+.clear{
+  text-align: center;
+  text-decoration: solid;
+  text-rendering: auto;
+   margin-top: 20px;
+  padding: 10px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+} 
