@@ -15,7 +15,7 @@ Just open `index.html` in any browser
 ## Folder Structure
 - index.html  
 - style.css  
-- script.js  
+- script.js 
 
 ## Future Improvements
 - Edit tasks  

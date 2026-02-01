@@ -10,22 +10,10 @@ todoButton.addEventListener("click",addTodo);
 todolist.addEventListener("click",deleteTodos);
 clearbtn.addEventListener("click",clearALLToDo);
 
-/*When user clicks “Add Todo”:
-
-User clicks Add
-   ↓
-Read input
-   ↓
-Create todo OBJECT
-   ↓
-Push to todos[]
-   ↓
-saveTodos()
-   ↓
-renderTodos() */
-
 function addTodo(e) {
     e.preventDefault();
+    // so lets begin
+    
     const inputValue = todoInput.value.trim();
     if (inputValue==="") return;
 /* created List 
@@ -118,11 +106,15 @@ function renderTodos(){
 todolist.innerHTML = "";
 todos.forEach((todo)=>{
     const li = document.createElement("li");
-    li.innerText = todo.text;
     li.dataset.id = todo.id;
+
     if(todo.completed){
         li.classList.add("completed");
     }
+    const span = document.createElement("span");
+    span.innerText = todo.text;
+    li.appendChild(span);
+
     const deletebtn = document.createElement("button");
     deletebtn.innerText = "X" ;
     deletebtn.classList.add("deletebtn");
@@ -132,3 +124,23 @@ todos.forEach((todo)=>{
 });
 
 }
+function startEdit(id){
+
+}
+function finishEdit(id , newText ){
+    
+}
+
+/*When user clicks “Add Todo”:
+
+User clicks Add
+   ↓
+Read input
+   ↓
+Create todo OBJECT
+   ↓
+Push to todos[]
+   ↓
+saveTodos()
+   ↓
+renderTodos() */
