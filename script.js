@@ -112,6 +112,7 @@ todos.forEach((todo)=>{
         li.classList.add("completed");
     }
     const span = document.createElement("span");
+    span.addEventListener("dblclick" , () => {startEdit(todo.id);});
     span.innerText = todo.text;
     li.appendChild(span);
 
@@ -125,9 +126,28 @@ todos.forEach((todo)=>{
 
 }
 function startEdit(id){
+const li = todolist.querySelector(`li[data-id='${id}']`);
+const span = li.querySelector("span");      
+const input = document.createElement("input");
+input.value = span.innerText;
+li.replaceChild(input , span);
+input.focus();
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    finishEdit(id, input.value);
+  }
+});
+
 
 }
 function finishEdit(id , newText ){
+if (newText.trim() === "") return;
+todos = todos.map((todo) =>
+  todo.id == id ? { ...todo, text: newText } : todo
+);
+saveTodos();
+renderTodos();
+
     
 }
 
