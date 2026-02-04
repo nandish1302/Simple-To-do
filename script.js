@@ -3,13 +3,20 @@ const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
 const todolist = document.querySelector(".todo-list");
 const clearbtn = document.querySelector(".clear");
+let currentFilter = "all";
+
+// event listeners  
 
 
 document.addEventListener("DOMContentLoaded",loadTodos);
 todoButton.addEventListener("click",addTodo);
 todolist.addEventListener("click",deleteTodos);
 clearbtn.addEventListener("click",clearALLToDo);
-
+document.addEventListener("click" , (e) => {
+    if(!e.target.dataset.filter) return;
+    currentFilter = e.target.dataset.filter;
+    renderTodos();
+})
 function addTodo(e) {
     e.preventDefault();
     // so lets begin
@@ -62,18 +69,20 @@ function deleteTodos(e){
 /*if(e.target.tagName==="LI"){
         e.target.classList.toggle("completed");
     }*/
-    if (target.tagName === "LI") {
-        const id = target.dataset.id;
+   const li = target.closest("li");
+if (!li || target.classList.contains("deletebtn")) return;
 
-        todos = todos.map(todo =>
-            todo.id == id
-                ? { ...todo, completed: !todo.completed }
-                : todo
-        );
+const id = li.dataset.id;
 
-        saveTodos();
-        renderTodos();
-    }
+todos = todos.map(todo =>
+  todo.id == id
+    ? { ...todo, completed: !todo.completed }
+    : todo
+);
+
+saveTodos();
+renderTodos();
+
     
       
 }
@@ -104,7 +113,16 @@ function renderTodos(){
 
 ✅ Re-render anytime data changes */
 todolist.innerHTML = "";
-todos.forEach((todo)=>{
+let filteredTodos = todos;
+
+  if (currentFilter === "active") {
+    filteredTodos = todos.filter(todo => !todo.completed);
+  }
+
+  if (currentFilter === "completed") {
+    filteredTodos = todos.filter(todo => todo.completed);
+  }
+filteredTodos.forEach((todo)=>{
     const li = document.createElement("li");
     li.dataset.id = todo.id;
 
@@ -150,6 +168,7 @@ renderTodos();
 
     
 }
+                  
 
 /*When user clicks “Add Todo”:
 
